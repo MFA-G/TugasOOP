@@ -4,6 +4,7 @@ public class Layout {
     private char[][] area;
     private char icon;
     private int maxX = 0;
+    
     public int getMaxX() {
         return maxX;
     }
