@@ -23,50 +23,51 @@ public class RobotApp {
         }while(!instruction.equals("x"));
         System.out.println("-------- Permainan Selesai --------");
     }
-    
+
     private void executeInstruction(String instruction) {
-        if (instruction.length() < 2) {
-            System.out.println("Input tidak valid. Masukkan banyaknya langkah!");
+        if(instruction.length() < 2) {
+            System.out.println("masukkan yang benar");
             return;
         }
 
         char moveDirection = instruction.charAt(0);
         int steps;
+
         try {
             steps = Integer.parseInt(instruction.substring(1));
         } catch (NumberFormatException e) {
-            System.out.println("Input tidak valid. Masukkan nomor step yang benar!");
-            return;
+            System.out.println("Pasti salah memasukkan");
         }
 
-        Position newPosition = new Position(robot.getPosition().getX(), robot.getPosition().getY());
-        switch(moveDirection) {
+        Position newPosition = new Position(robot.getPosition().getX(), robot.getPosition().getY())
+
+        switch (moveDirection) {
             case 'w':
+                newPosition.setY(newPosition.getY() - steps);
+                break;
+            case 'a':
                 newPosition.setX(newPosition.getX() - steps);
                 break;
             case 's':
-                newPosition.setX(newPosition.getX() + steps);
-                break;
-            case 'a':
-                newPosition.setY(newPosition.getY() - steps);
-                break;
-            case 'd':
                 newPosition.setY(newPosition.getY() + steps);
                 break;
+            case 'd':
+                newPosition.setX(newPosition.getX() + steps);
+                break;        
             default:
-                System.out.println("Arah tidak valid. Gunakan 'w', 's', 'a', or 'd'.");
+                System.out.println("pasti ada yang salah");
                 return;
         }
 
-        if(isValidPosition(newPosition)) {
+        if (isValidPosition(newPosition)) {
             robot.setPosition(newPosition);
         } else {
-            System.out.println("Robot tidak bisa keluar dari area permainan!");
+            System.out.println("gak boleh salah!");
         }
     }
 
     private boolean isValidPosition(Position pos) {
-        return pos.getX() >= 0 && pos.getX() < layout.getMaxX() && pos.getY() >= 0 && pos.getY() < layout.getMaxY();
+        return pos.getX() > 0 && pos.getX() < layout.getMaxX() && pos.getY() > 0 && pos.getY() < layout.getMaxY();
     }
 
     private String waitInstruction() {
@@ -78,14 +79,10 @@ public class RobotApp {
     }
 
     private void draw() {
-        System.out.println("------ Posisi Terbaru ------");
+        System.out.println("Posisi terbaru");
         for(int i = 0; i < layout.getMaxX(); i++) {
             for(int j = 0; j < layout.getMaxY(); j++) {
-                if(i == robot.getPosition().getX() && j == robot.getPosition().getY()) {
-                    System.out.print(robot.getIcon());
-                } else {
-                    System.out.print(layout.getArea()[i][j]);
-                }
+                System.out.println(i == robot.getPosition().getX() && j == robot.getPosition().getY() ? robot.getIcon() : layout.getArea()[i][j]);
             }
             System.out.println();
         }

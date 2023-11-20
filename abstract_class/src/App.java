@@ -11,6 +11,11 @@ public class App {
         piano.caraMain();
         terompet.caraMain();
         gitar.caraMain();
+
+        piano.merekAlat();
+        terompet.merekAlat();
+        gitar.merekAlat();
     
+        terompet.caraMain("ditekan tombolnya");
     }
 }
