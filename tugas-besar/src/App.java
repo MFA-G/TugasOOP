@@ -3,8 +3,11 @@ import java.util.Scanner;
 
 public class App {
 	public static ArrayList<Menu> sharedMenuList = new ArrayList<>();
+	private static Pembeli pembeli = new Pembeli();
+	private static Penjual penjual = new Penjual();
 
 	public static void main(String[] args) throws Exception {
+
 		menu();
 	}
 
@@ -20,11 +23,9 @@ public class App {
 		int pilih = scanner.nextInt();
 		switch (pilih) {
 			case 1:
-				Pembeli pembeli = new Pembeli();
 				pembeli.metodeMasuk();
 				break;
 			case 2:
-				Penjual penjual = new Penjual();
 				penjual.metodeMasuk();
 				break;
 			default:

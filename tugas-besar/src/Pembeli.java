@@ -177,26 +177,18 @@ public class Pembeli {
       menuPembeli();
     } else {
       int totalHarga = 0;
-      for (Menu sharedMenu : App.sharedMenuList) {
-        int jumlahDiKeranjang = 0;
-        for (Menu menuDiKeranjang : keranjangBelanja) {
-          if (menuDiKeranjang.getNamaMenu().equals(sharedMenu.getNamaMenu())
-              && menuDiKeranjang.getPemilik().equals(sharedMenu.getPemilik())) {
-            jumlahDiKeranjang++;
-          }
-        }
-        if (jumlahDiKeranjang > 0) {
-          if (sharedMenu.getStok() >= jumlahDiKeranjang) {
-            sharedMenu.setStok(sharedMenu.getStok() - jumlahDiKeranjang);
-            totalHarga += jumlahDiKeranjang * sharedMenu.getHarga();
-          } else {
-            System.out.println("Stok tidak cukup untuk menu: " + sharedMenu.getNamaMenu());
-            menuPembeli();
-            return;
+      for (Menu menu : keranjangBelanja) {
+        totalHarga += menu.getHarga();
+      }
+      System.out.println("Total harga pembelian Anda adalah: " + totalHarga);
+      for (Menu menu : keranjangBelanja) {
+        for (Menu sharedMenu : App.sharedMenuList) {
+          if (sharedMenu.equals(menu)) {
+            sharedMenu.setStok(sharedMenu.getStok() - 1);
           }
         }
       }
-      System.out.println("Total harga pembelian Anda adalah: " + totalHarga);
+
       keranjangBelanja.clear();
       System.out.println("Terima kasih telah melakukan pembelian. Keranjang belanja Anda sekarang kosong.");
       menuPembeli();

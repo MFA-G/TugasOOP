@@ -158,7 +158,7 @@ public class Penjual {
         break;
       default:
         System.out.println("Pilihan tidak valid.");
-        return;
+        menuPenjual();
     }
 
     System.out.println("Menu berhasil diedit.");
@@ -178,7 +178,7 @@ public class Penjual {
         menuPenjual();
       }
     }
-    System.out.println("Menu tidak ditemukan atau Anda tidak memiliki hak untuk menghapus menu ini.");
+    System.out.println("Menu tidak ditemukan atau anda tidak memiliki hak untuk menghapus menu ini.");
     menuPenjual();
   }
 
