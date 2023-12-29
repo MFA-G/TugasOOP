@@ -32,7 +32,7 @@ public class Pembeli {
 
   public void login() {
     boolean login = false;
-    System.out.println("Login sebagai penjual");
+    System.out.println("Login sebagai pembeli");
     System.out.print("Username: ");
     userPembeli = scanner.nextLine();
     System.out.print("Password: ");
