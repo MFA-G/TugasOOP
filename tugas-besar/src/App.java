@@ -7,7 +7,6 @@ public class App {
 	private static Penjual penjual = new Penjual();
 
 	public static void main(String[] args) throws Exception {
-
 		menu();
 	}
 
